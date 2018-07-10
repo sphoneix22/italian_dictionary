@@ -1,3 +1,9 @@
+[![Build Status](https://travis-ci.org/sphoneix22/italian_dictionary.svg?branch=master)](https://travis-ci.org/sphoneix22/italian_dictionary)
+![Version](https://img.shields.io/badge/PyPI-v0.1-orange.svg)
+![Python](https://img.shields.io/pypi/pyversions/Django.svg)
+![PRS](https://img.shields.io/badge/PRs-Welcome-green.svg)
+
+
 # ItalianDictionary
 
 This package searches for word meanings on [dizionario-italiano](www.dizionario-italiano.it).
