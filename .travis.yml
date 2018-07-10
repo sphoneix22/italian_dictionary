@@ -14,5 +14,5 @@ install:
   - pip install -r requirements.txt
 
 script:
-  - pytest --cov italian_dictionary
+  - pytest --cov italian_dictionary/test
   - codecov
