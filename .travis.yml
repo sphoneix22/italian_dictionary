@@ -1,0 +1,18 @@
+language: python
+
+cache: pip
+
+python:
+  - "3.6"
+  - "3.7"
+
+dist: xenial
+
+install:
+  - pip install codecov
+  - pip install pytest-cov
+  - pip install -r requirements.txt
+
+script:
+  - pytest --cov italian_dictionary
+  - codecov
