@@ -4,15 +4,12 @@ cache: pip
 
 python:
   - "3.6"
-  - "3.7.0"
-
-dist: xenial
-
 install:
   - pip install codecov
   - pip install pytest-cov
+  - pip install -e
   - pip install -r requirements.txt
 
 script:
-  - python -m pytest
+  - pytest --cov 
   - codecov
