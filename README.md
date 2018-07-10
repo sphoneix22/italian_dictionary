@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/sphoneix22/italian_dictionary.svg?branch=master)](https://travis-ci.org/sphoneix22/italian_dictionary)
+[![codecov](https://codecov.io/gh/sphoneix22/italian_dictionary/branch/master/graph/badge.svg)](https://codecov.io/gh/sphoneix22/italian_dictionary)
 ![Version](https://img.shields.io/badge/PyPI-v0.1-orange.svg)
 ![Python](https://img.shields.io/pypi/pyversions/Django.svg)
 ![PRS](https://img.shields.io/badge/PRs-Welcome-green.svg)
@@ -6,7 +7,7 @@
 
 # ItalianDictionary
 
-This package searches for word meanings on [dizionario-italiano](www.dizionario-italiano.it).
+This package searches for word meanings on [dizionario-italiano](https://www.dizionario-italiano.it).
 
 ## Usage
 ```python
