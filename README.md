@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/sphoneix22/italian_dictionary.svg?branch=master)](https://travis-ci.org/sphoneix22/italian_dictionary)
 [![codecov](https://codecov.io/gh/sphoneix22/italian_dictionary/branch/master/graph/badge.svg)](https://codecov.io/gh/sphoneix22/italian_dictionary)
-![Version](https://img.shields.io/badge/PyPI-v0.1-orange.svg)
+[![PyPI version](https://badge.fury.io/py/italian-dictionary.svg)](https://badge.fury.io/py/italian-dictionary)
 ![Python](https://img.shields.io/pypi/pyversions/Django.svg)
 ![PRS](https://img.shields.io/badge/PRs-Welcome-green.svg)
 
@@ -8,7 +8,10 @@
 # ItalianDictionary
 
 This package searches for word meanings on [dizionario-italiano](https://www.dizionario-italiano.it).
-
+## Install
+```bash
+pip install italian-dictionary
+```
 ## Usage
 ```python
 import italian_dictionary
