@@ -4,7 +4,7 @@ from italian_dictionary import get_all_data, get_only_definition, exceptions, sc
 
 import bs4
 
-class ItalianDictionary():
+class Test_ItalianDictionary():
     def test_getonlydef(self):
         word = 'cane'
         defs = get_only_definition(word)
