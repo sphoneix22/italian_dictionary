@@ -23,6 +23,7 @@ class TestErrors:
     def test_errors(self):
         with pytest.raises(exceptions.WordNotFoundError):
             get_all_data('nfdifneif')
+        with pytest.raises(exceptions.WordNotFoundError):
             get_only_definition('afefemmm')
 
 class TestEngine:
