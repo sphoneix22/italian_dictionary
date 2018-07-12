@@ -56,9 +56,9 @@ def get_defs(word):
 
 def get_all_data(word):
     data = {'lemma': None, 'pronuncia': None,'grammatica': None,  'definizione': None, 'locuzioni': None,}
+    data['definizione'] = get_defs(word)
     data['lemma'] = get_lemma(word)
     data['pronuncia'] = get_pronuncia(word)
     data['grammatica'] = get_grammatica(word)
     data['locuzioni'] = get_locuzioni(word)
-    data['definizione'] = get_defs(word)
     return data
