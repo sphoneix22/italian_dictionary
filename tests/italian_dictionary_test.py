@@ -25,6 +25,8 @@ class TestErrors:
             get_all_data('nfdifneif')
         with pytest.raises(exceptions.WordNotFoundError):
             get_only_definition('afefemmm')
+        with pytest.raises(exceptions.WordNotFoundError):
+            scraper.get_lemma('adaff')
 
 class TestEngine:
     def test_engine(self):
