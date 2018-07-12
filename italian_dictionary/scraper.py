@@ -56,6 +56,7 @@ def get_defs(word):
 
 def get_all_data(word):
     data = {'lemma': None, 'pronuncia': None,'grammatica': None,  'definizione': None, 'locuzioni': None,}
+    data['url'] = URL.format(word)
     data['definizione'] = get_defs(word)
     data['lemma'] = get_lemma(word)
     data['pronuncia'] = get_pronuncia(word)
