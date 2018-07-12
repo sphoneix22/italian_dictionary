@@ -46,4 +46,8 @@ datas = italian_dictionary.get_all_data('albero')
               'alberi rinterzati', 
               'albero del sego'] 
 }
- ```
+```
+## Tests
+To run tests you need ```pytest```
+When in project folder:
+```python -m pytest```
