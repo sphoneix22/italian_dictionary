@@ -7,7 +7,7 @@ URL = "https://www.dizionario-italiano.it/dizionario-italiano.php?parola={}"
 
 def get_soup(url):
     sauce = request.urlopen(url).read()
-    soup = bs4.BeautifulSoup(sauce, 'lxml')
+    soup = bs4.BeautifulSoup(sauce, 'html.parser')
     return soup
 
 
