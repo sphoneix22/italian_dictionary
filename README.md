@@ -17,12 +17,12 @@ pip install italian-dictionary
 import italian_dictionary
 
 # Use this to get only the meaning 
-definition = italian_dictionary.get_only_definition('cane', limit=3) #Optional: specify max number of defs
+definition = italian_dictionary.get_definition('cane', limit=3, all_data=False) 
 
-#Use this to get all datas of a word
-datas = italian_dictionary.get_all_data('albero')
+#Use this to get all datas of a word (all_data default is True)
+datas = italian_dictionary.get_definition('albero')
 ```
- #### get_all_data response
+ #### Complete data response
  This function will return a dictionary like this:
  ```python
 {
