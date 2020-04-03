@@ -33,6 +33,8 @@ class TestEngine:
     def test_engine(self):
         soup = scraper.get_soup("https://www.google.it")
         assert isinstance(soup, bs4.BeautifulSoup)
+        sillabe = scraper.get_sillabe('cane')
+        assert isinstance(sillabe, list)
         lemma = scraper.get_lemma('cane')
         assert isinstance(lemma,str)
         pronuncia = scraper.get_pronuncia('cane')

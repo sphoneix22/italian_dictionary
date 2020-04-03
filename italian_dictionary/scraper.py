@@ -10,6 +10,16 @@ def get_soup(url):
     soup = bs4.BeautifulSoup(sauce, 'html.parser')
     return soup
 
+def get_sillabe(word):
+    soup = get_soup(URL.format(word))
+    sillabe = soup.small.span.string
+    split_indexes = [pos for pos, char in enumerate(sillabe) if char == "|"]
+    # necessario perchè le sillabazioni contengono gli accenti di pronuncia
+    tmp = list(word)
+    for i in split_indexes:
+      tmp = tmp[0:i] + ["|"] + tmp[i:]
+    sillabe = ''.join(tmp).split("|")
+    return sillabe
 
 def get_lemma(word):
     soup = get_soup(URL.format(word))
@@ -57,6 +67,7 @@ def get_defs(word):
 def get_all_data(word):
     data = {'lemma': None, 'pronuncia': None,'grammatica': None,  'definizione': None, 'locuzioni': None,}
     data['url'] = URL.format(word)
+    data['sillabe'] = det_sillabe(word)
     data['definizione'] = get_defs(word)
     data['lemma'] = get_lemma(word)
     data['pronuncia'] = get_pronuncia(word)
