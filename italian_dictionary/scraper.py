@@ -10,17 +10,6 @@ def get_soup(url):
     soup = bs4.BeautifulSoup(sauce, 'html.parser')
     return soup
 
-def get_sillabe(word):
-    soup = get_soup(URL.format(word))
-    sillabe = soup.small.span.string
-    split_indexes = [pos for pos, char in enumerate(sillabe) if char == "|"]
-    # necessario perchè le sillabazioni contengono gli accenti di pronuncia
-    tmp = list(word)
-    for i in split_indexes:
-      tmp = tmp[0:i] + ["|"] + tmp[i:]
-    sillabe = ''.join(tmp).split("|")
-    return sillabe
-
 def get_lemma(word):
     soup = get_soup(URL.format(word))
     lemma = soup.find('span', class_='lemma')
@@ -28,6 +17,17 @@ def get_lemma(word):
         return lemma.text
     else:
         raise exceptions.WordNotFoundError()
+
+    def get_sillabe(word):
+    soup = get_soup(URL.format(word))
+    sillabe = soup.small.span
+    split_indexes = [pos for pos, char in enumerate(sillabe) if char == "|"]
+    # necessario perchè le sillabazioni contengono gli accenti di pronuncia
+    tmp = list(word)
+    for i in split_indexes:
+      tmp = tmp[0:i] + ["|"] + tmp[i:]
+    sillabe = ''.join(tmp).split("|")
+    return sillabe
 
 def get_pronuncia(word):
     soup = get_soup(URL.format(word))
