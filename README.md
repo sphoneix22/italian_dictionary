@@ -26,6 +26,7 @@ datas = italian_dictionary.get_definition('albero')
  This function will return a dictionary like this:
  ```python
 {
+'sillabe': ['al', 'be', 'ro'],
 'lemma': 'àlbero', 
 'pronuncia': ' /ˈalbero/', 
 'grammatica': 'sostantivo maschile', 
