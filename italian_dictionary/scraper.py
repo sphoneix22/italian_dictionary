@@ -20,7 +20,7 @@ def get_lemma(word):
 
 def get_sillabe(word):
     soup = get_soup(URL.format(word))
-    sillabe = soup.small.span
+    sillabe = soup.small.span.string
     split_indexes = [pos for pos, char in enumerate(sillabe) if char == "|"]
     # necessario perchè le sillabazioni contengono gli accenti di pronuncia
     tmp = list(word)
