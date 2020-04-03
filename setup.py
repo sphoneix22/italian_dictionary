@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="italian_dictionary",
-    version="1.2",
+    version="1.3",
     author="sphoneix",
     author_email="simone.pugliese21@gmail.com",
     description="A package which retrieves meaning and other informations about italian words.",
