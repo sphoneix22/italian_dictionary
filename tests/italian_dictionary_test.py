@@ -35,6 +35,8 @@ class TestEngine:
         assert isinstance(soup, bs4.BeautifulSoup)
         lemma = scraper.get_lemma('cane')
         assert isinstance(lemma,str)
+        sillabe = scraper.get_sillabe('cane')
+        assert isinstance(sillabe, list)
         pronuncia = scraper.get_pronuncia('cane')
         assert isinstance(pronuncia,str)
         grammatica = scraper.get_grammatica('cane')
