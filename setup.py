@@ -13,6 +13,9 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/sphoneix22/italian_dictionary",
     packages=setuptools.find_packages(),
+    install_requires = [
+        'beautifulsoup4'
+    ],
     classifiers=(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
