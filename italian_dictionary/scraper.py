@@ -48,8 +48,8 @@ def get_pronuncia(soup):
 
 
 def get_grammatica(soup):
-    gram = soup.find('span', class_="grammatica")
-    return gram.text
+    gram = soup.find_all('span', class_="grammatica")
+    return [x.text for x in gram]
 
 
 def get_locuzioni(soup):
@@ -63,10 +63,19 @@ def get_defs(soup):
     for definitions in soup.find_all('span', class_='italiano'):
         children_content = ''
         for children in definitions.findChildren():
-            children_content += children.text
-            children.decompose()
+            try:
+                if children.attrs['class'][0] == 'esempi':
+                    continue
+                else:
+                    children_content += children.text
+                    children_content += ' '
+                    children.decompose()
+            except KeyError:
+                children_content += children.text
+                children_content += ' '
+                children.decompose()
         if children_content != '':
-            defs.append(f"{children_content.upper()} -- {definitions.text}")
+            defs.append(f"{children_content.upper()} -- {definitions.text.replace('()','')}")
         else:
             defs.append(definitions.text)
     if len(defs) == 0:

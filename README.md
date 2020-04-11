@@ -29,7 +29,7 @@ datas = italian_dictionary.get_definition('albero')
 'sillabe': ['al', 'be', 'ro'],
 'lemma': 'àlbero', 
 'pronuncia': ' /ˈalbero/', 
-'grammatica': 'sostantivo maschile', 
+'grammatica': ['sostantivo maschile'], 
 'definizione': ['pianta con fusto alto, legnoso, provvisto di rami nella parte superiore', 
                 "MARINERIA --  palo che regge i pennoni con le vele e tutta l'attrezzatura", 
                 'MECCANICA --  parte rotante, generalmente cilindrica, che, in una macchina, ha la funzione di trasmettere potenza meccanica da un organo a un altro'], 
