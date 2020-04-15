@@ -22,6 +22,16 @@ class Test_ItalianDictionary():
         data = get_definition(word)
         assert type(data) is dict
         assert len(data) > 0
+    def test_verb_1(self):
+        word = 'essere'
+        data = get_definition(word)
+        assert type(data) is dict
+        assert len(data) > 0
+    def test_verb_2(self):
+        word = 'sapere'
+        data = get_definition(word)
+        assert type(data) is dict
+        assert len(data) > 0
 
 class TestErrors:
     def test_errors(self):
