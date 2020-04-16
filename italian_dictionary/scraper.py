@@ -28,11 +28,13 @@ def get_lemma(soup):
 
 
 def get_sillabe(soup, word):
-    sillabe = soup.small.span
-    if sillabe is not None:
-        sillabe = sillabe.string
-    else:
-        raise exceptions.WordNotFoundError()
+    lemma = soup.find(class_='lemma')
+    small_list = lemma.find_all_next('small')
+    for el in small_list:
+        if el.parent not in lemma.children:
+            sillabe = el.span.find(text=True, recursive=False)
+            break
+
     split_indexes = [pos for pos, char in enumerate(sillabe) if char == "|"]
     # necessario perchè le sillabazioni contengono gli accenti di pronuncia
     tmp = list(word)
@@ -63,17 +65,17 @@ def get_defs(soup):
     for definitions in soup.find_all('span', class_='italiano'):
         children_content = ''
         for children in definitions.findChildren():
+            if children.string is None:
+                continue
             try:
-                if children.attrs['class'][0] == 'esempi':
+                if children.attrs['class'][0] in ('esempi','autore'):
                     continue
                 else:
                     children_content += children.text
                     children_content += ' '
                     children.decompose()
             except KeyError:
-                children_content += children.text
-                children_content += ' '
-                children.decompose()
+                continue
         if children_content != '':
             defs.append(f"{children_content.upper()} -- {definitions.text.replace('()','')}")
         else:
@@ -89,7 +91,7 @@ def get_data(word, all_data=True):
     if all_data is False:
         return get_defs(soup)
 
-    data = {'sillabe': get_sillabe(soup, word), 'lemma': get_lemma(soup), 'pronuncia': get_pronuncia(soup),
-            'grammatica': get_grammatica(soup), 'definizione': get_defs(soup), 'locuzioni': get_locuzioni(soup),
+    data = {'definizione': get_defs(soup), 'sillabe': get_sillabe(soup, word), 'lemma': get_lemma(soup), 'pronuncia': get_pronuncia(soup),
+            'grammatica': get_grammatica(soup), 'locuzioni': get_locuzioni(soup),
             'url': url}
     return data
