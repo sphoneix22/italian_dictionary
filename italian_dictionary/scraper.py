@@ -4,7 +4,7 @@ from urllib import parse
 
 from italian_dictionary import exceptions
 
-URL = "https://www.dizionario-italiano.it/dizionario-italiano.php?parola={}"
+URL = "https://www.dizionario-italiano.it/dizionario-italiano.php?parola={}100"
 
 
 def build_url(base_url):
@@ -23,8 +23,6 @@ def get_lemma(soup):
     lemma = soup.find('span', class_='lemma')
     if lemma is not None:
         return lemma.text
-    else:
-        raise exceptions.WordNotFoundError()
 
 
 def get_sillabe(soup, word):
@@ -32,7 +30,10 @@ def get_sillabe(soup, word):
     small_list = lemma.find_all_next('small')
     for el in small_list:
         if el.parent not in lemma.children:
-            sillabe = el.span.find(text=True, recursive=False)
+            try:
+                sillabe = el.span.find(text=True, recursive=False)
+            except AttributeError:  # Word has no syllable division
+                return [word]
             break
 
     split_indexes = [pos for pos, char in enumerate(sillabe) if char == "|"]
@@ -68,7 +69,7 @@ def get_defs(soup):
             if children.string is None:
                 continue
             try:
-                if children.attrs['class'][0] in ('esempi','autore'):
+                if children.attrs['class'][0] in ('esempi', 'autore'):
                     continue
                 else:
                     children_content += children.text
@@ -77,7 +78,7 @@ def get_defs(soup):
             except KeyError:
                 continue
         if children_content != '':
-            defs.append(f"{children_content.upper()} -- {definitions.text.replace('()','')}")
+            defs.append(f"{children_content.upper()} -- {definitions.text.replace('()', '')}")
         else:
             defs.append(definitions.text)
     if len(defs) == 0:
@@ -91,7 +92,7 @@ def get_data(word, all_data=True):
     if all_data is False:
         return get_defs(soup)
 
-    data = {'definizione': get_defs(soup), 'sillabe': get_sillabe(soup, word), 'lemma': get_lemma(soup), 'pronuncia': get_pronuncia(soup),
-            'grammatica': get_grammatica(soup), 'locuzioni': get_locuzioni(soup),
+    data = {'definizione': get_defs(soup), 'sillabe': get_sillabe(soup, word), 'lemma': get_lemma(soup),
+            'pronuncia': get_pronuncia(soup), 'grammatica': get_grammatica(soup), 'locuzioni': get_locuzioni(soup),
             'url': url}
     return data
