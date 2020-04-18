@@ -17,6 +17,8 @@ class Test_ItalianDictionary():
         assert type(data) is dict
         for key in data.keys():
             assert data[key] is not None
+        for letter in data['lemma']:
+            assert letter != ' '
     def test_specialcharacter(self):
         word = 'perchè'
         data = get_definition(word)

@@ -22,7 +22,7 @@ def get_soup(url):
 def get_lemma(soup):
     lemma = soup.find('span', class_='lemma')
     if lemma is not None:
-        return lemma.text
+        return lemma.find(text=True, recursive=False).rstrip() # Getting only span text + removing white spaces at the end
 
 
 def get_sillabe(soup, word):
