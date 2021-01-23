@@ -45,4 +45,4 @@ jobs:
       - name: Send coverage
         uses: codecov/codecov-action@v1
         with:
-          token: e03ecba5-d43c-4a8e-bf67-5abd85cab429
+          token: ${{secrets.CODECOV_TOKEN}}
