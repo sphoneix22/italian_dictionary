@@ -109,11 +109,5 @@ def get_data(word, properties, all_data=True):
             data["locuzioni"] = get_locuzioni(soup)
         elif (property in data) is False:
             raise exceptions.InvalidPropertyError("Property {} not found in data returned from {}")
-    
-    # if all_data is False:
-    #     return get_defs(soup)
-
-    # data = {'definizione': get_defs(soup), 'sillabe': get_sillabe(soup, word), 'lemma': get_lemma(soup),
-    #         'pronuncia': get_pronuncia(soup), 'grammatica': get_grammatica(soup), 'locuzioni': get_locuzioni(soup),
-    #         'url': url}
+            
     return data
