@@ -108,6 +108,6 @@ def get_data(word, properties, all_data=True):
         elif property == "locuzioni":
             data["locuzioni"] = get_locuzioni(soup)
         elif (property in data) is False:
-            raise exceptions.InvalidPropertyError("Property {} not found in data returned from {}")
+            raise exceptions.InvalidPropertyError("Property {} not found in data returned from {}".format(property, url))
             
     return data
