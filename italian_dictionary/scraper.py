@@ -22,7 +22,7 @@ def get_soup(url):
 def get_lemma(soup):
     lemma = soup.find('span', class_='lemma')
     if lemma is not None:
-        return lemma.find(text=True, recursive=False).rstrip() # Getting only span text + removing white spaces at the end
+        return lemma.find(string=True, recursive=False).rstrip() # Getting only span text + removing white spaces at the end
 
 
 def get_sillabe(soup, word):
@@ -31,7 +31,7 @@ def get_sillabe(soup, word):
     for el in small_list:
         if el.parent not in lemma.children:
             try:
-                sillabe = el.span.find(text=True, recursive=False)
+                sillabe = el.span.find(string=True, recursive=False)
             except AttributeError:  # Word has no syllable division
                 return [word]
             break
@@ -86,13 +86,28 @@ def get_defs(soup):
     return defs
 
 
-def get_data(word, all_data=True):
+def get_data(word, properties, all_data=True):
     url = build_url(URL.format(word))
     soup = get_soup(url)
-    if all_data is False:
-        return get_defs(soup)
+    data = {}
 
-    data = {'definizione': get_defs(soup), 'sillabe': get_sillabe(soup, word), 'lemma': get_lemma(soup),
-            'pronuncia': get_pronuncia(soup), 'grammatica': get_grammatica(soup), 'locuzioni': get_locuzioni(soup),
-            'url': url}
+    if len(properties) == 0:
+        # Should never happen if this function is only called from get_definition() in dictionary.py
+        raise LookupError("No properties specified.")
+    for property in properties:
+        if property == "definizione":
+            data["definizione"] = get_defs(soup)
+        elif property == "lemma":
+            data["lemma"] = get_lemma(soup)
+        elif property == "sillabe":
+            data["sillabe"] = get_sillabe(soup, word)
+        elif property == "pronuncia":
+            data["pronuncia"] = get_pronuncia(soup)
+        elif property == "grammatica":
+            data["grammatica"] = get_grammatica(soup)
+        elif property == "locuzioni":
+            data["locuzioni"] = get_locuzioni(soup)
+        elif (property in data) is False:
+            raise exceptions.InvalidPropertyError("Property {} not found in data returned from {}".format(property, url))
+            
     return data
