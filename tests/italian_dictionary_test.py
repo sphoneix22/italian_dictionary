@@ -35,6 +35,18 @@ class Test_ItalianDictionary():
         data = get_definition(word)
         assert type(data) is dict
         assert len(data) > 0
+    def test_oneProperty(self):
+        word = 'albero'
+        data = get_definition(word, all_data=False, properties=['pronuncia'])
+        assert type(data) is str
+        assert data != ''
+    def test_multipleProperties(self):
+        word = 'albero'
+        data = get_definition(word, all_data=False, properties=['grammatica', 'pronuncia'])
+        assert type(data) is dict
+        assert len(data) > 0
+        assert data['pronuncia'] != ''
+        assert type(data['grammatica']) is list
 
 class TestErrors:
     def test_errors(self):
@@ -42,3 +54,5 @@ class TestErrors:
             get_definition('nfdifneif')
         with pytest.raises(exceptions.WordNotFoundError):
             get_definition('afefemmm')
+        with pytest.raises(exceptions.InvalidPropertyError):
+            get_definition('albero', all_data=False, properties=['adsfads', 'nnszdd'])
